@@ -9,32 +9,21 @@ import { map } from 'rxjs';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent implements OnInit {
+
   selectedCountry!: any;
   selectedState!: any;
   selectedCity!: any;
+
   country: any[] = [];
   state: any[] = [];
   city: any[] = [];
+
   countryName = '';
   stateName = '';
-  isLoadingCountry= true;
-  isLoadingState= true;
-  isLoadingCity= true;
 
-  number04 = [0, 1, 2, 3, 4]
-  number59 = [5, 6, 7, 8, 9]
-  number1014 = [10, 11, 12, 13, 14]
-
-  selectedNumber04!: number;
-  selectedNumber59!: number;
-  selectedNumber1014!: number;
-  num1 = 0;
-
-  chan($event: any) {
-    this.num1 = $event;
-    console.log(this.num1 + 'iam in parent')
-  }
-
+  isLoadingCountry = true;
+  isLoadingState = true;
+  isLoadingCity = true;
 
 
 
@@ -57,22 +46,20 @@ export class SelectComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-
     const domain = 'https://api.airvisual.com';
     const endPoint = '/v2/countries';
     const APIKey = '5e72b8e3-974b-4a07-a251-7fd73bbd3e90';
     const APIParams = {
       key: APIKey,
     };
-
     const url = `${domain}${endPoint}`;
-
-
     this.http.get(url, { params: APIParams }).pipe(map((response: any) => response.data)).subscribe((list: any) => {
-      this.country = list.map((el: any) => el.country);this.isLoadingCountry= false;
+      this.country = list.map((el: any) => el.country); this.isLoadingCountry = false;
     });
 
 
+
+    
     const domain1 = 'https://api.airvisual.com';
     const endPoint1 = '/v2/nearest_city';
     const APIKey1 = '5e72b8e3-974b-4a07-a251-7fd73bbd3e90';
@@ -83,7 +70,6 @@ export class SelectComponent implements OnInit {
     };
 
     const url1 = `${domain1}${endPoint1}`;
-
 
     this.http.get(url1, { params: APIParams1 })
       .subscribe((response: any) => {
@@ -98,10 +84,6 @@ export class SelectComponent implements OnInit {
           forCity: city,
         }
       });
-
-
-
-
 
   }
 
@@ -118,8 +100,8 @@ export class SelectComponent implements OnInit {
     const url = `${domain}${endPoint}`;
 
     this.http.get(url, { params: APIParams }).pipe(map((response: any) => response.data)).subscribe((list: any) => {
-      this.state = list.map((el: any) => el.state);this.selectedState=[];this.selectedCity=[]
-      ;
+      this.state = list.map((el: any) => el.state); this.selectedState = []; this.selectedCity = []
+        ;
     });
   }
 
@@ -137,11 +119,9 @@ export class SelectComponent implements OnInit {
     console.log(this.stateName)
     //this.isLoadingState= false;
     this.http.get(url, { params: APIParams }).pipe(map((response: any) => response.data)).subscribe((list: any) => {
-      this.city = list.map((el: any) => el.city); this.selectedCity=[]
+      this.city = list.map((el: any) => el.city); this.selectedCity = []
     });
   }
-
-
 
   weatherCity($event: any) {
     const domain = 'https://api.airvisual.com';
@@ -150,7 +130,7 @@ export class SelectComponent implements OnInit {
     const citySelected = $event;
     const APIParams = {
       city: citySelected,
-      state:  this.stateName,
+      state: this.stateName,
       country: this.countryName,
       key: APIKey,
     };
@@ -168,7 +148,6 @@ export class SelectComponent implements OnInit {
         weatherIcon: ic,
         forCity: city,
       }
-
     })
   }
 
