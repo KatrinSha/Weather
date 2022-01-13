@@ -2,22 +2,22 @@
     <div class="fact-weather">
         <div class="title">Actual weather</div>
         <div class="city">
-            <span class="city-title"> {{this.weatherData.forCity}}</span>
-            <span class="time">{{time}}</span>
+            <span class="city-title"> {{weatherData.forCity}}</span>
+            <span class="time">{{Data|date}}</span>
         </div>
-        <div class="param-temp"> {{this.weatherData.temperatureCelsius}} °C</div>
+        <div class="param-temp"> {{weatherData.temperatureCelsius}} °C</div>
         <div class="info">
             <div class="press">
                 <span class="press-title">Atmospheric pressure</span>
-                <span class="press-param"> {{this.weatherData.atmosphericPressurehPa}} hPa</span>
+                <span class="press-param"> {{weatherData.atmosphericPressurehPa}} hPa</span>
             </div>
-            <div class="param">Humidity: {{this.weatherData.humidity}} %</div>
+            <div class="param">Humidity: {{weatherData.humidity}} %</div>
             <div class="wind"><span>Wind</span>
-                <span class="speed"> speed:  {{this.weatherData.windSpeed}} m/s</span>
-                <div class="direct"> direction: {{this.weatherData.windDirection}} </div>
+                <span class="speed"> speed:  {{weatherData.windSpeed}} m/s</span>
+                <div class="direct"> direction: {{weatherData.windDirection | wind}} </div>
             </div>
             <div class="icon">
-                <img class="images" src={{myImage}}{{this.weatherData.weatherIcon}}.png width="80" />
+                <img class="images" src={{myImage}}{{weatherData.weatherIcon}}.png width="80" />
             </div>
         </div>
     </div>

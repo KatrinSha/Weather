@@ -4,18 +4,12 @@ import { WeatherService } from "../weather.service";
 @Component({
   selector: 'app-weather-data',
   templateUrl: './weather-data.component.html',
-  styleUrls: ['./weather-data.component.scss']
+  styleUrls: ['./weather-data.component.scss'],
 })
 export class WeatherDataComponent implements OnInit {
-
-  constructor(private weatherService: WeatherService) { }
+  constructor(private weatherService: WeatherService) {}
   myImage: string = 'assets/images/';
   Data = new Date();
-  Day = this.Data.getDate();
-  Month = this.Data.getMonth();
-  time = `${this.Day}.${this.Month + 1}`
-
-
 
   weatherData = {
     temperatureCelsius: 0,
@@ -25,8 +19,7 @@ export class WeatherDataComponent implements OnInit {
     windDirection: 0,
     weatherIcon: 0,
     forCity: '',
-  }
-
+  };
 
   ngOnInit() {
     this.weatherService.subject.subscribe((obj) => {
@@ -38,7 +31,7 @@ export class WeatherDataComponent implements OnInit {
         windSpeed: obj.windSpeed,
         windDirection: obj.windDirection,
         weatherIcon: obj.weatherIcon,
-      }
+      };
     });
   }
 }

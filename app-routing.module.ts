@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   
   {
-    path: 'weather-data/:city',
+    path: 'weather-data/:cityName',
     component: WeatherDataComponent
   },
   {
